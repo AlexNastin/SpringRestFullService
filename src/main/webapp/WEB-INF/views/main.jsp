@@ -38,7 +38,10 @@
 				contentType : "application/json",
 				url : '${pageContext.request.contextPath}/library',
 				success : function(response) {
+					alert("Dis");
 					display(response);
+					alert("Dis2");
+					
 				},
 				dataType : "json"
 			});
