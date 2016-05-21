@@ -12,19 +12,17 @@
 </script>
 </head>
 <body>
-Задания:</br>
-1) Распарсить через Angular.js данные(книги) в виде таблицы. Добавить возможность удаления, обновления данных. Оформить все через Bootstrap.
-2) Отправить на сервер JSON обьект. Для записи. Пример обьекта</br>
-<form id="save-form">
-		<input type="text" id="idBook"> <input type="text" id="name">
-		<input type="text" id="provider">
-		<button type="submit" id="saveBook">Save</button>
-</form>
-
-	<a href="<c:url value="/library" />">Library</a>
-
-	<input type="button" onclick="library()" value="Library">
-	<div id="test"></div>
-	<input type="button" onclick="RestPutPhys()" value="save">
+Заданиe:</br>
+1) Распарсить через Angular.js данные(книги) в виде таблицы. Добавить возможность:</br> записи книги на сервер через форму, добавить на форму валидацию данных, а также возможность удаления, обновления данных. Оформить все через Bootstrap.</br>
+ URLs: </br>
+ Пример: http://localhost:8080/example/library;</br>
+ 
+Получение всех книг: example/library; Тип запроса: GET</br>
+<a href='<c:url value="/library"/>'>Library</a></br>
+Получение одной книги по ID: example/get/{id}; Тип запроса: GET</br>
+<a href='<c:url value="/get/1"/>'>Get</a></br>
+Удаление одной книги по ID: example/delete/{id}; Тип запроса: GET</br>
+<a href='<c:url value="/delete/1"/>'>Delete</a></br>
+Сохраниение книги на сервер: example/save; Тип запроса: POST</br>
 </body>
 </html>
