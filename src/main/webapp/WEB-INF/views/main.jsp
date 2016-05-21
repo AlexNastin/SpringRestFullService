@@ -1,84 +1,30 @@
+<%@ page language="java" contentType="text/html; charset=utf8"
+	pageEncoding="utf8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@ page session="false"%>
 <html>
 <head>
-<title>Home</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF8">
+<title>RestFull Service</title>
 <script src="<c:url value="/resources/js/jquery-2.1.4.js" />">
-	
 </script>
 </head>
 <body>
-
-	<form id="save-form">
+Задания:</br>
+1) Распарсить через Angular.js данные(книги) в виде таблицы. Добавить возможность удаления, обновления данных. Оформить все через Bootstrap.
+2) Отправить на сервер JSON обьект. Для записи. Пример обьекта</br>
+<form id="save-form">
 		<input type="text" id="idBook"> <input type="text" id="name">
 		<input type="text" id="provider">
 		<button type="submit" id="saveBook">Save</button>
-	</form>
+</form>
 
-	<h1>Hello world!</h1>
-
-	<P>The time on the server is ${serverTime}.</P>
 	<a href="<c:url value="/library" />">Library</a>
 
 	<input type="button" onclick="library()" value="Library">
 	<div id="test"></div>
-
-	<script type="text/javascript">
-		$(document).ready(function($) {
-			$("#save-form").submit(function(event) {
-				save();
-			});
-		});
-
-		function library() {
-			$.ajax({
-				type : "GET",
-				contentType : "application/json",
-				url : '${pageContext.request.contextPath}/library',
-				success : function(response) {
-					alert("Dis");
-					display(response);
-					alert("Dis2");
-					
-				},
-				dataType : "json"
-			});
-		}
-
-		function display(data) {
-			var json = JSON.stringify(data, null, 4);
-			$('#test').html(json);
-		}
-
-		function save() {
-			var save = {}
-			save["idBook"] = $("#idBook").val();
-			save["name"] = $("#name").val();
-			save["provider"] = $("#provider").val();
-			$.ajax({
-				type : "POST",
-				contentType : "application/json",
-				url : "${pageContext.request.contextPath}/save",
-				data : JSON.stringify(save),
-				dataType : 'json',
-				timeout : 100000,
-				success : function(data) {
-					alert("S");
-					library();
-					alert("S2");
-				},
-				error : function(e) {
-					alert("e");
-				},
-				done : function(e) {
-					alert("D");
-				}
-			});
-
-		}
-	</script>
-
+	<input type="button" onclick="RestPutPhys()" value="save">
 </body>
 </html>

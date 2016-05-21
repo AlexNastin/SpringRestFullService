@@ -1,15 +1,12 @@
 package spring.restfullservice.example.bean;
 
 import java.io.Serializable;
+import java.util.Date;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonView;
 
 public class Book implements Cloneable, Serializable {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 
 	@JsonView
@@ -18,8 +15,11 @@ public class Book implements Cloneable, Serializable {
 	@JsonView
 	private String name;
 
-	@JsonIgnore
-	private String provider;
+	@JsonView
+	private String author;
+
+	@JsonView
+	private Date dataPublishing;
 
 	public Book() {
 		super();
@@ -41,22 +41,30 @@ public class Book implements Cloneable, Serializable {
 		this.name = name;
 	}
 
-	public String getProvider() {
-		return provider;
+	public String getAuthor() {
+		return author;
 	}
 
-	public void setProvider(String provider) {
-		this.provider = provider;
+	public void setAuthor(String author) {
+		this.author = author;
+	}
+
+	public Date getDataPublishing() {
+		return dataPublishing;
+	}
+
+	public void setDataPublishing(Date dataPublishing) {
+		this.dataPublishing = dataPublishing;
 	}
 
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
+		result = prime * result + ((author == null) ? 0 : author.hashCode());
+		result = prime * result + ((dataPublishing == null) ? 0 : dataPublishing.hashCode());
 		result = prime * result + idBook;
 		result = prime * result + ((name == null) ? 0 : name.hashCode());
-		result = prime * result
-				+ ((provider == null) ? 0 : provider.hashCode());
 		return result;
 	}
 
@@ -69,6 +77,16 @@ public class Book implements Cloneable, Serializable {
 		if (getClass() != obj.getClass())
 			return false;
 		Book other = (Book) obj;
+		if (author == null) {
+			if (other.author != null)
+				return false;
+		} else if (!author.equals(other.author))
+			return false;
+		if (dataPublishing == null) {
+			if (other.dataPublishing != null)
+				return false;
+		} else if (!dataPublishing.equals(other.dataPublishing))
+			return false;
 		if (idBook != other.idBook)
 			return false;
 		if (name == null) {
@@ -76,18 +94,12 @@ public class Book implements Cloneable, Serializable {
 				return false;
 		} else if (!name.equals(other.name))
 			return false;
-		if (provider == null) {
-			if (other.provider != null)
-				return false;
-		} else if (!provider.equals(other.provider))
-			return false;
 		return true;
 	}
 
 	@Override
 	public String toString() {
-		return "Book [idBook=" + idBook + ", name=" + name + ", provider="
-				+ provider + "]";
+		return "Book [idBook=" + idBook + ", name=" + name + ", author=" + author + ", dataPublishing=" + dataPublishing
+				+ "]";
 	}
-
 }
